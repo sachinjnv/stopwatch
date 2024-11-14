@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+ <style>
+
+  .show{
+
+   font-size: 20px;
+
+   height:150px;
+
+   width:40%;
+
+   border:3px solid black;
+
+   margin:50px;
+
+   display:flex;
+
+   justify-content:center;
+
+   align-items:center;
+
+  }
+
+  .showhour,.showmin,.showsec{
+
+   font-size:50px;
+
+   text-align:center;
+
+   height:50%;
+
+   width:19%;
+
+  }
+
+  button{
+
+   margin:10px;
+
+   box-shadow:0 0 10px 10px skyblue;
+
+   height:40px;
+
+   width:70px;
+
+  }
+
+ </style>
+
+ <meta charset="UTF-8">
+
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+ <title>Document</title>
+
+</head>
+
+<body>
+
+ <center>
+
+ <div class="show">
+
+  <div class="showhour">:</div>
+
+  <div class="showmin">:</div>
+
+  <div class="showsec">:</div>
+
+ </div>
+
+ <button>start</button>
+
+ <button class="stop">stop</button>
+
+ <button class="reset">reset</button>
+
+</center>
+
+ <script>
+
+ let button=document.querySelector('button');
+
+ let showsec=document.querySelector('.showsec');
+
+ let showmin=document.querySelector('.showmin');
+
+ let showhour=document.querySelector('.showhour');
+
+ let stop=document.querySelector('.stop');
+
+ let reset=document.querySelector('.reset');
+
+  let sec=0;
+
+  let min=0;
+
+  let hour=0;
+
+ // setvalue
+
+ if(hour==0){
+
+  showhour.innerText=`00`;
+
+ }
+
+  if(min==0)
+
+ {
+
+  showmin.innerText=`:00`;
+
+ }
+
+ if(sec==0){
+
+  showsec.innerText=`:00`;
+
+ }
+
+
+
+ button.addEventListener('click',()=>{
+
+let intervalid=setInterval(function(){
+
+  // show seconds on page
+
+ // show min
+
+ if(sec==59){
+
+  sec=0;
+
+  min++;
+
+  if(min<10){
+
+showmin.innerText=`:0${min}`;
+
+}else{
+
+ showmin.innerText=`:${min}`;
+
+}
+
+// show hours
+
+if(min==59){
+
+ min=0;
+
+ hour++;
+
+ if(hour<10){
+
+showhour.innerText=`0${hour}`;
+
+}else{
+
+ showhour.innerText=hour;
+
+}
+
+}
+
+ }
+
+sec++;
+
+if(sec<10){
+
+showsec.innerText=`:0${sec}`;
+
+}else{
+
+ showsec.innerText=`:${sec}`;
+
+}
+
+// to stop watch
+
+stop.addEventListener('click',()=>{
+
+  clearInterval(intervalid)
+
+ })
+
+ reset.addEventListener('click',()=>{
+
+  clearInterval(intervalid)
+
+  showsec.innerText=`:00`;
+
+  showhour.innerText=`00`;
+
+  showmin.innerText=`:00`;
+
+ })
+
+},1000)
+
+ })
+
+
+
+ </script>
+
+</body>
+
+</html>
